@@ -12,7 +12,7 @@ public class RabbitMQServiceImpl implements AmqpService {
     private AmqpProducer<Message> amqp;
 
     @Override
-    public void sendToConsumer(Message message) {
-        amqp.producer(message);
+    public void enviarAoConsumidor(Message message) {
+        amqp.produtor(message);
     }
 }

@@ -21,7 +21,7 @@ public class ProducerRabbitMQ implements AmqpProducer<Message> {
     private String exchange;
 
     @Override
-    public void producer(Message message) {
+    public void produtor(Message message) {
         try{
             rabbitTemplate.convertAndSend(exchange,queue,message);
         }catch (Exception e){

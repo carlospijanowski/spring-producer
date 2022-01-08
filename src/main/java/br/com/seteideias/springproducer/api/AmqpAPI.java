@@ -24,7 +24,7 @@ public class AmqpAPI {
         return ResponseEntity.ok(messageResponse);
     }
 
-    @RequestMapping(value = "/set/{mensagem}", method = RequestMethod.GET)
+    @GetMapping(value = "/set/{mensagem}")
     public String capturarMensagem(@PathVariable(value = "mensagem") String mensagem) {
         Message message = new Message();
         message.setText(mensagem);

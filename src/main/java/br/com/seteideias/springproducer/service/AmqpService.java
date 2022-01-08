@@ -4,4 +4,5 @@ import br.com.seteideias.springproducer.dto.Message;
 
 public interface AmqpService {
     void enviarAoConsumidor (Message message);
+
 }

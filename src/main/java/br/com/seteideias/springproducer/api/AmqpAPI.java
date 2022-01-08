@@ -3,6 +3,7 @@ package br.com.seteideias.springproducer.api;
 import br.com.seteideias.springproducer.dto.Message;
 import br.com.seteideias.springproducer.dto.MessageResponse;
 import br.com.seteideias.springproducer.service.AmqpService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
+@Log4j2
 @RestController
 public class AmqpAPI {
 
@@ -18,13 +20,11 @@ public class AmqpAPI {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PostMapping("/send")
-    public ResponseEntity<MessageResponse> sendToConsumer(@RequestBody Message message) {
+    public void sendToConsumer(@RequestBody Message message) {
         amqpService.enviarAoConsumidor(message);
-        MessageResponse messageResponse = new MessageResponse("deu tudo certo!!",new Date());
-        return ResponseEntity.ok(messageResponse);
     }
 
-    @RequestMapping(value = "/set/{mensagem}", method = RequestMethod.GET)
+    @GetMapping(value = "/set/{mensagem}")
     public String capturarMensagem(@PathVariable(value = "mensagem") String mensagem) {
         Message message = new Message();
         message.setText(mensagem);
